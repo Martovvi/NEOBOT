@@ -1,0 +1,420 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://hazards/Spikes.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/bg.png" type="Texture" id=2]
+[ext_resource path="res://rooms/testing/TileMap.tres" type="TileSet" id=3]
+[ext_resource path="res://rooms/testing/rainbow.gd" type="Script" id=4]
+[ext_resource path="res://scripts/room.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 286 )
+
+[node name="Room5" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 512, 288 )
+scale = Vector2( 1, 0.96 )
+z_index = -50
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timer" type="Timer" parent="Background"]
+autostart = true
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = 2
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 3
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( 0, 1, 3, 1, 1, 1, 2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 6, 1, 1, 7, 1, 1, 8, 1, 1, 9, 1, 1, 10, 1, 1, 11, 1, 1, 12, 1, 1, 13, 1, 1, 14, 1, 1, 15, 1, 1, 16, 1, 1, 17, 1, 1, 18, 1, 1, 19, 1, 1, 20, 1, 1, 21, 1, 1, 22, 1, 1, 23, 1, 1, 24, 1, 1, 25, 1, 1, 26, 1, 2, 29, 1, 0, 30, 1, 1, 31, 1, 3, 65536, 1, 131075, 65559, 0, 65536, 65560, 0, 65538, 65567, 1, 131075, 131072, 1, 131075, 131095, 0, 131072, 131096, 0, 131074, 131103, 1, 131075, 196608, 1, 196611, 196631, 0, 131072, 196632, 0, 131074, 196639, 1, 131075, 262167, 0, 131072, 262168, 0, 131074, 262175, 1, 131075, 327703, 0, 131072, 327704, 0, 131074, 327711, 1, 131075, 393239, 0, 131072, 393240, 0, 131074, 393247, 1, 131075, 458752, 1, 65539, 458775, 0, 131072, 458776, 0, 131074, 458783, 1, 131075, 524288, 1, 131075, 524294, 0, 65536, 524295, 0, 65537, 524296, 0, 65538, 524311, 0, 131072, 524312, 0, 131074, 524319, 1, 131075, 589824, 1, 131075, 589830, 0, 131072, 589831, 0, 131073, 589832, 0, 131074, 589847, 0, 131072, 589848, 0, 131074, 589851, 0, 0, 589852, 0, 2, 589855, 1, 131075, 655360, 1, 131075, 655366, 0, 196608, 655367, 0, 196609, 655368, 0, 196610, 655383, 0, 131072, 655384, 0, 131074, 655391, 1, 131075, 720896, 1, 131075, 720919, 0, 196608, 720920, 0, 196610, 720927, 1, 131075, 786432, 1, 131075, 786463, 1, 131075, 851968, 1, 131075, 851999, 1, 131075, 917504, 1, 131075, 917535, 1, 131075, 983040, 1, 131075, 983044, 0, 65536, 983045, 0, 65538, 983049, 0, 65536, 983050, 0, 65538, 983056, 0, 0, 983057, 0, 1, 983058, 0, 2, 983071, 1, 131075, 1048576, 1, 131075, 1048580, 0, 196608, 1048581, 0, 196610, 1048585, 0, 196608, 1048586, 0, 196610, 1048602, 0, 0, 1048603, 0, 2, 1048607, 1, 131075, 1114112, 1, 3, 1114113, 1, 1, 1114114, 1, 1, 1114115, 1, 1, 1114116, 1, 1, 1114117, 1, 2, 1114121, 1, 0, 1114122, 1, 1, 1114123, 1, 1, 1114124, 1, 1, 1114125, 1, 1, 1114126, 1, 1, 1114127, 1, 1, 1114128, 1, 1, 1114129, 1, 1, 1114130, 1, 1, 1114131, 1, 1, 1114132, 1, 1, 1114133, 1, 1, 1114134, 1, 1, 1114135, 1, 1, 1114136, 1, 1, 1114137, 1, 1, 1114138, 1, 1, 1114139, 1, 1, 1114140, 1, 1, 1114141, 1, 1, 1114142, 1, 1, 1114143, 1, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RoomBoundaries" type="Area2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundaries"]
+position = Vector2( 512, 286 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CameraAnchors" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Anchor" type="Position2D" parent="CameraAnchors"]
+position = Vector2( 512, 287 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hazard" type="Node2D" parent="."]
+
+[node name="Spikes" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 46, 536 )
+
+[node name="Spikes2" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 78, 536 )
+
+[node name="Spikes3" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 110, 536 )
+
+[node name="Spikes20" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 48, 40 )
+rotation = 3.14159
+
+[node name="Spikes21" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 80, 40 )
+rotation = 3.14159
+
+[node name="Spikes22" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 112, 40 )
+rotation = 3.14159
+
+[node name="Spikes23" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 144, 40 )
+rotation = 3.14159
+
+[node name="Spikes24" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 176, 40 )
+rotation = 3.14159
+
+[node name="Spikes25" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 208, 40 )
+rotation = 3.14159
+
+[node name="Spikes26" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 240, 40 )
+rotation = 3.14159
+
+[node name="Spikes27" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 272, 40 )
+rotation = 3.14159
+
+[node name="Spikes28" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 304, 40 )
+rotation = 3.14159
+
+[node name="Spikes29" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 336, 40 )
+rotation = 3.14159
+
+[node name="Spikes30" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 368, 40 )
+rotation = 3.14159
+
+[node name="Spikes31" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 400, 40 )
+rotation = 3.14159
+
+[node name="Spikes48" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 432, 40 )
+rotation = 3.14159
+
+[node name="Spikes49" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 464, 40 )
+rotation = 3.14159
+
+[node name="Spikes103" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 208, 360 )
+rotation = 3.14159
+
+[node name="Spikes106" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 240, 360 )
+rotation = 3.14159
+
+[node name="Spikes107" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 272, 360 )
+rotation = 3.14159
+
+[node name="Spikes108" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 184, 272 )
+rotation = -1.5708
+
+[node name="Spikes109" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 184, 304 )
+rotation = -1.5708
+
+[node name="Spikes110" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 184, 336 )
+rotation = -1.5708
+
+[node name="Spikes111" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 296, 270 )
+rotation = 1.5708
+
+[node name="Spikes112" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 296, 302 )
+rotation = 1.5708
+
+[node name="Spikes113" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 296, 334 )
+rotation = 1.5708
+
+[node name="Spikes52" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 752, 392 )
+rotation = 3.14159
+
+[node name="Spikes53" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 784, 392 )
+rotation = 3.14159
+
+[node name="Spikes75" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 880, 328 )
+rotation = 3.14159
+
+[node name="Spikes76" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 912, 328 )
+rotation = 3.14159
+
+[node name="Spikes55" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 338 )
+rotation = -1.5708
+
+[node name="Spikes56" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 370 )
+rotation = -1.5708
+
+[node name="Spikes77" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 210 )
+rotation = -1.5708
+
+[node name="Spikes80" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 114 )
+rotation = -1.5708
+
+[node name="Spikes83" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 82 )
+rotation = -1.5708
+
+[node name="Spikes81" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 146 )
+rotation = -1.5708
+
+[node name="Spikes82" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 178 )
+rotation = -1.5708
+
+[node name="Spikes78" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 274 )
+rotation = -1.5708
+
+[node name="Spikes79" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 306 )
+rotation = -1.5708
+
+[node name="Spikes114" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 728, 242 )
+rotation = -1.5708
+
+[node name="Spikes91" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 304 )
+rotation = -1.5708
+
+[node name="Spikes92" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 336 )
+rotation = -1.5708
+
+[node name="Spikes93" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 368 )
+rotation = -1.5708
+
+[node name="Spikes94" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 208 )
+rotation = -1.5708
+
+[node name="Spikes95" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 240 )
+rotation = -1.5708
+
+[node name="Spikes96" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 272 )
+rotation = -1.5708
+
+[node name="Spikes101" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 464 )
+rotation = -1.5708
+
+[node name="Spikes102" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 496 )
+rotation = -1.5708
+
+[node name="Spikes104" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 400 )
+rotation = -1.5708
+
+[node name="Spikes105" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 432 )
+rotation = -1.5708
+
+[node name="Spikes97" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 112 )
+rotation = -1.5708
+
+[node name="Spikes98" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 80 )
+rotation = -1.5708
+
+[node name="Spikes99" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 144 )
+rotation = -1.5708
+
+[node name="Spikes100" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 984, 176 )
+rotation = -1.5708
+
+[node name="Spikes57" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 304 )
+rotation = 1.5708
+
+[node name="Spikes58" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 336 )
+rotation = 1.5708
+
+[node name="Spikes59" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 368 )
+rotation = 1.5708
+
+[node name="Spikes84" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 208 )
+rotation = 1.5708
+
+[node name="Spikes85" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 240 )
+rotation = 1.5708
+
+[node name="Spikes86" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 272 )
+rotation = 1.5708
+
+[node name="Spikes87" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 176 )
+rotation = 1.5708
+
+[node name="Spikes88" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 80 )
+rotation = 1.5708
+
+[node name="Spikes89" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 112 )
+rotation = 1.5708
+
+[node name="Spikes90" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 808, 144 )
+rotation = 1.5708
+
+[node name="Spikes32" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 496, 40 )
+rotation = 3.14159
+
+[node name="Spikes33" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 528, 40 )
+rotation = 3.14159
+
+[node name="Spikes34" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 560, 40 )
+rotation = 3.14159
+
+[node name="Spikes35" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 592, 40 )
+rotation = 3.14159
+
+[node name="Spikes36" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 624, 40 )
+rotation = 3.14159
+
+[node name="Spikes37" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 656, 40 )
+rotation = 3.14159
+
+[node name="Spikes38" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 688, 40 )
+rotation = 3.14159
+
+[node name="Spikes39" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 720, 40 )
+rotation = 3.14159
+
+[node name="Spikes40" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 816, 40 )
+rotation = 3.14159
+
+[node name="Spikes41" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 848, 40 )
+rotation = 3.14159
+
+[node name="Spikes42" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 944, 40 )
+rotation = 3.14159
+
+[node name="Spikes43" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 976, 40 )
+rotation = 3.14159
+
+[node name="Spikes6" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 494, 536 )
+
+[node name="Spikes7" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 526, 536 )
+
+[node name="Spikes8" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 558, 536 )
+
+[node name="Spikes9" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 590, 536 )
+
+[node name="Spikes10" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 622, 536 )
+
+[node name="Spikes11" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 654, 536 )
+
+[node name="Spikes12" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 686, 536 )
+
+[node name="Spikes13" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 718, 536 )
+
+[node name="Spikes14" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 750, 536 )
+
+[node name="Spikes15" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 782, 536 )
+
+[node name="Spikes16" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 814, 536 )
+
+[node name="Spikes17" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 910, 536 )
+
+[node name="Spikes18" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 942, 536 )
+
+[node name="Spikes19" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 974, 536 )
+
+[node name="Spikes4" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 366, 536 )
+
+[node name="Spikes5" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 398, 536 )
+
+[node name="Spikes54" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 430, 536 )
+
+[node name="Spikes60" parent="Hazard" instance=ExtResource( 1 )]
+position = Vector2( 462, 536 )
+[connection signal="timeout" from="Background/Timer" to="Background" method="_on_Timer_timeout"]

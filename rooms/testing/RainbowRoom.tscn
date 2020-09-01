@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://ui/fonts/m5x7-large.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sprites/bg.png" type="Texture" id=2]
+[ext_resource path="res://rooms/testing/TileMap.tres" type="TileSet" id=3]
+[ext_resource path="res://rooms/testing/rainbow.gd" type="Script" id=4]
+[ext_resource path="res://scripts/room.gd" type="Script" id=5]
+[ext_resource path="res://ui/fonts/m5x7-medium.tres" type="DynamicFont" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 286 )
+
+[node name="RainbowRoom" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 512, 288 )
+scale = Vector2( 1, 0.96 )
+z_index = -50
+texture = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timer" type="Timer" parent="Background"]
+autostart = true
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = 2
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 3
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( 0, 2, 3, 1, 3, 3, 2, 4, 3, 3, 5, 3, 4, 0, 3, 5, 1, 3, 6, 2, 3, 7, 3, 3, 8, 4, 3, 9, 5, 3, 10, 0, 3, 11, 1, 3, 12, 2, 3, 13, 3, 3, 14, 4, 3, 15, 5, 3, 16, 0, 3, 17, 1, 3, 18, 2, 3, 19, 3, 3, 20, 4, 3, 21, 5, 3, 22, 0, 3, 23, 1, 3, 24, 2, 3, 25, 3, 3, 26, 4, 3, 27, 5, 3, 28, 0, 3, 29, 1, 3, 30, 2, 3, 31, 3, 3, 65536, 0, 3, 65567, 4, 3, 131072, 1, 3, 131103, 5, 3, 196608, 5, 3, 196639, 0, 3, 262144, 4, 3, 262175, 1, 3, 327680, 3, 3, 327711, 2, 3, 393216, 2, 3, 393247, 3, 3, 458752, 1, 3, 458783, 4, 3, 524288, 0, 3, 524319, 5, 3, 589824, 5, 3, 589855, 0, 3, 655360, 4, 3, 655391, 1, 3, 720896, 3, 3, 720927, 2, 3, 786432, 2, 3, 786463, 3, 3, 851968, 1, 3, 851999, 4, 3, 917535, 5, 3, 983071, 0, 3, 1048607, 1, 3, 1114112, 3, 3, 1114113, 2, 3, 1114114, 1, 3, 1114115, 0, 3, 1114116, 5, 3, 1114117, 4, 3, 1114118, 3, 3, 1114119, 2, 3, 1114120, 1, 3, 1114121, 0, 3, 1114122, 5, 3, 1114123, 4, 3, 1114124, 3, 3, 1114125, 2, 3, 1114126, 1, 3, 1114127, 0, 3, 1114128, 5, 3, 1114129, 4, 3, 1114130, 3, 3, 1114131, 2, 3, 1114132, 1, 3, 1114133, 0, 3, 1114134, 5, 3, 1114135, 4, 3, 1114136, 3, 3, 1114137, 2, 3, 1114138, 1, 3, 1114139, 0, 3, 1114140, 5, 3, 1114141, 4, 3, 1114142, 3, 3, 1114143, 2, 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RoomBoundaries" type="Area2D" parent="."]
+visible = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundaries"]
+position = Vector2( 512, 286 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CameraAnchors" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Anchor" type="Position2D" parent="CameraAnchors"]
+position = Vector2( 512, 287 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hazard" type="Node2D" parent="."]
+
+[node name="YouWin" type="RichTextLabel" parent="."]
+margin_left = 181.0
+margin_top = 155.0
+margin_right = 856.0
+margin_bottom = 359.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[rainbow freq=0.9, sat=4 val=20]You win!"
+text = "You win!"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Thanks" type="RichTextLabel" parent="."]
+margin_left = 129.0
+margin_top = 326.0
+margin_right = 907.0
+margin_bottom = 429.0
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "Thanks for playing"
+text = "Thanks for playing"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Background/Timer" to="Background" method="_on_Timer_timeout"]

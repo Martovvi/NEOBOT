@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sounds/music2.wav" type="AudioStream" id=1]
+[ext_resource path="res://sounds/music1.wav" type="AudioStream" id=2]
+[ext_resource path="res://sounds/BackgroundMusic.gd" type="Script" id=3]
+[ext_resource path="res://sounds/music3.wav" type="AudioStream" id=4]
+
+[node name="BackgroundMusic" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Music1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -15.0
+autoplay = true
+
+[node name="Music2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -15.0
+
+[node name="Music3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -15.0
+[connection signal="finished" from="Music1" to="." method="_on_Music1_finished"]
+[connection signal="finished" from="Music2" to="." method="_on_Music2_finished"]
+[connection signal="finished" from="Music3" to="." method="_on_Music3_finished"]
